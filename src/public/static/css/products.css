@@ -309,7 +309,7 @@
    }
 }
 
-@media (width > 1500px) {
+@media (width > 1600px) {
    .card:nth-child(3n):after {
       content: " ";
    }
