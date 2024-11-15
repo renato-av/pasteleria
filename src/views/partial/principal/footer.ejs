@@ -1,0 +1,136 @@
+<div class="whatsapp-button">
+    <a href="https://api.whatsapp.com/send?phone=19045346422&text=Hello!%20I%20would%20like%20to%20make%20an%20order"
+        target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <p id="whatsapp-message" class="message">Any special order? Contact us!</p>
+</div>
+    <!-- Pie de página -->
+    <footer class="layaut__footer">
+        <div class="footer__container">
+            <div class="footer__main">
+                <div class="footer__main-right">
+                    <div class="footer__widget">
+                        <h6 class="widget__title">Quick Link</h6>
+                        <ul class="widget__list">
+                            <li class="widget__item"><a class="widget__link" href="/">Home</a></li>
+                            <li class="widget__item"><a class="widget__link" href="/about">About</a></li>
+                            <li class="widget__item"><a class="widget__link" href="/letter">Menu</a></li>
+                          
+                        </ul>
+                    </div>
+                    <div class="footer__widget">
+                        <h6 class="widget__title">Help &amp; Support</h6>
+                        <ul class="widget__list"> 
+                            <li class="widget__item"><a class="widget__link" href="/faq">FAQ</a></li>
+                            <!-- <li class="widget__item"><a class="widget__link" href="#">terms &amp; conditions</a></li> -->
+                        </ul>
+                    </div>
+                    <div class="footer__widget">
+                        <h6 class="widget__title">Contact Us</h6>
+                        <ul class="widget__list"> 
+                            <li class="widget__item"><span class="widget__link">+1 (904) 534-6422</span></li>
+                            <li class="widget__item"><span class="widget__link" >mayaspastries1@gmail.com</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+             
+            </div>
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    <span class="copyright__text">
+                        &copy; 2023 Maya's Pastries. All rights reserved.
+                    </span>
+                </div>
+             
+            </div>
+        </div>
+    </footer>
+    <script src="/static/assets/js/main.js"></script>
+    <script src="/static/js/products.js"></script>
+    <script src="/js/principal.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	
+	<script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="static/js/jquery.waypoints.min.js"></script>
+	<script src="/static/js/jquery.stellar.min.js"></script>
+	<script src="/static/js/owl.carousel.min.js"></script>
+	<script src="/static/js/jquery.magnific-popup.min.js"></script>
+	<script src="/static/js/aos.js"></script>
+	<script src="/static/js/jquery.animateNumber.min.js"></script>
+	<script src="/static/js/bootstrap-datepicker.js"></script>
+	<script src="/static/js/jquery.timepicker.min.js"></script>
+	<script src="/static/js/scrollax.min.js"></script>
+	<script src="/static/js/wstp.js"></script>
+	<script src="/static/main.js"></script>
+	<script src="/static/script.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+	<script>
+		$('.clients-carousel').owlCarousel({
+			loop: true,
+			nav: false,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			animateOut: 'fadeOut',
+			animateIn: 'fadeIn',
+			smartSpeed: 450,
+			margin: 30,
+			responsive: {
+				0: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				991: {
+					items: 2
+				},
+				1200: {
+					items: 2
+				},
+				1920: {
+					items: 2
+				}
+			}
+		});
+	</script>
+    <script>
+     // JavaScript para manejar el menú desplegable
+document.getElementById('menu-btn').addEventListener('click', function() {
+    var menu = document.getElementById('responsive-menu');
+    if (menu.style.display === 'block') {
+      menu.style.display = 'none';
+    } else {
+      menu.style.display = 'block';
+    }
+  });
+  // Añade un manejador para cambiar el tamaño de la ventana
+window.addEventListener('resize', function() {
+    var enlacesHeader = document.querySelector('.enlaces-header');
+    var menuBtn = document.getElementById('menu-btn');
+    var responsiveMenu = document.getElementById('responsive-menu');
+
+    if (window.innerWidth > 768) {
+        enlacesHeader.style.display = 'flex';
+        menuBtn.style.display = 'none';
+        responsiveMenu.style.display = 'none';
+    } else {
+        enlacesHeader.style.display = 'none';
+        menuBtn.style.display = 'block';
+    }
+});
+
+// Forzar el ajuste al cargar la página
+window.dispatchEvent(new Event('resize'));
+  
+          
+    </script>
+</body>
+
+</html>

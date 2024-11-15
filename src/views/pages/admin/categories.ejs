@@ -1,0 +1,78 @@
+<%- include('../../partial/admin/header') %>
+
+<div class="container-admin">
+  <%- include('../../partial/admin/navbar') %>
+  <div class="modal" id="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <button class="modal__close">&times;</button>
+      <h2 class="modal__title">Formulario de Categoria</h2>
+      <form
+        class="modal__form"
+        action="/admin/categories/addCategory"
+        method="POST"
+      >
+        <div class="modal__form-group">
+          <label for="name" class="modal__label">Nombre de la categoria</label>
+          <input
+            type="text"
+            id="name"
+            class="modal__input"
+            name="name"
+            required
+          />
+        </div>
+
+        <button type="submit" class="modal__submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+  <div class="container-mant">
+    <h1>mantenimiento categorias</h1>
+    <button class="modal__trigger">agregar Categoria</button>
+
+    <table id="table" class="display" style="width: 100%">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Name</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(categories.length > 0) {%> <% for (let i= 0; i <
+        categories.length; i++){%>
+
+        <tr>
+          <td><%= categories[i].id%></td>
+
+          <td><%= categories[i].name%></td>
+
+          <td>
+            <a
+              href="/admin/categories/edit/<%= categories[i].id%>"
+              class="btn-edit"
+              ><i class="fas fa-edit"></i
+            ></a>
+            <form
+              action="/admin/categories/delete/<%= categories[i].id %>"
+              method="POST"
+              style="display: inline"
+            >
+              <button
+                type="submit"
+                class="btn btn-danger"
+                onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?');"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+
+        <% } %> <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('../../partial/admin/footer') %>

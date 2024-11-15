@@ -1,0 +1,31 @@
+<%- include('../../../partial/admin/header') %>
+<div class="container-admin">
+  <%- include('../../../partial/admin/navbar') %>
+
+  <div class="container">
+    <h1 class="title-update">Editar Categoría</h1>
+    <form
+      action="/admin/categories/update/<%= category.id %>"
+      method="POST"
+      class="form"
+    >
+      <div class="form-group">
+        <label for="name" class="form-label">Nombre de la categoría</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value="<%= category.name %>"
+          class="form-input"
+          required
+        />
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="/admin/categories" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../../../partial/admin/footer') %>

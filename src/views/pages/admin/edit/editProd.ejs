@@ -1,0 +1,104 @@
+<%- include('../../../partial/admin/header') %>
+<div class="container-admin">
+  <%- include('../../../partial/admin/navbar') %>
+
+  <div class="container">
+    <h1 class="title-update">Editar Producto</h1>
+    <form
+        class="modal__form"
+        action="/admin/products/update/<%= product.id %>"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+      <input type="hidden" name="currentImage" value="<%= product.image_url %>">
+        <div class="modal__form-group">
+          <label for="name" class="modal__label">Nombre del Producto:</label>
+          <input
+            type="text"
+            id="name"
+            class="modal__input"
+            name="name"
+            value="<%= product.name %>"
+            required
+          />
+        </div>
+        <div class="modal__form-group">
+          <label for="description" class="modal__label">Descripción:</label>
+          <input
+            type="text"
+            id="description"
+            class="modal__input"
+            name="description"
+            value="<%= product.description %>"
+            required
+          />
+        </div>
+        <div class="modal__form-group">
+          <label for="category" class="modal__label">Categoría:</label>
+          <select id="category" class="modal__input" name="category" required>
+            <% categories.forEach(category => { %>
+            <option value="<%= category.id %>" <%= category.id === product.category_id ? 'selected' : '' %>><%= category.name %></option>
+            <% }); %>
+          </select>
+        </div>
+        <div class="modal__form-group">
+            <label for="image" class="modal__label">Imagen del Producto:</label>
+            <input
+              type="file"
+              id="image"
+              class="modal__input"
+              name="image"
+              accept="image/*"
+            />
+            <div class="modal__image-preview" id="image-preview">
+                <% if (product.image_url) { %>
+                <img src="/images/<%= product.image_url %>" alt="Vista previa">
+                <% } else { %>
+                <p>No hay imagen disponible</p>
+                <% } %>
+              </div>
+             
+            <div class="modal__image-name" id="image-name"><%= product.image_url %></div>
+          </div>
+        <button type="submit" class="modal__submit">Actualizar</button>
+      </form>
+  </div>
+</div>
+
+<%- include('../../../partial/admin/footer') %>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const productImageInput = document.getElementById("image");
+    const imagePreviewContainer = document.getElementById("image-preview");
+    const imageNameContainer = document.getElementById("image-name");
+  
+    // Muestra la imagen actual si existe
+    const currentImage = imageNameContainer.textContent.trim();
+    if (currentImage) {
+      const currentImageElement = document.createElement('img');
+      currentImageElement.src = `/images/${currentImage}`;
+      currentImageElement.alt = 'Vista previa';
+      imagePreviewContainer.innerHTML = '';
+      imagePreviewContainer.appendChild(currentImageElement);
+    }
+  
+    productImageInput.addEventListener("change", () => {
+      const file = productImageInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          imagePreviewContainer.innerHTML = `<img src="${e.target.result}" alt="Vista previa">`;
+          imagePreviewContainer.style.display = "block";
+          imageNameContainer.textContent = file.name;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        imagePreviewContainer.innerHTML = currentImage ? `<img src="/images/${currentImage}" alt="Vista previa">` : `<p>No hay imagen disponible</p>`;
+        imageNameContainer.textContent = currentImage;
+      }
+    });
+  });
+  
+  
+      
+</script>

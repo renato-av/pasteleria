@@ -1,0 +1,48 @@
+<%- include('../../partial/principal/header') %>
+<div id="loader">
+  <img src="/static/images/loadgif.gif" alt="Loading...">
+</div>
+<section class="layaout__about" id="about">
+  <div class="about__container">
+    <div class="about__content">
+      <h2 class="about__title">About Maya</h2>
+      <p class="about__description">
+        At Pastelería Maya, we make pastries and desserts for all types of
+        celebrations. Made with quality, freshness, and hygiene with innovative
+        designs, thus allowing full satisfaction for our customers. Founded
+        seven years ago, every delicacy we create is a testament to our
+        commitment to excellence and diversity. From delicious cakes to
+        exquisite desserts, each bite tells a story of love and dedication. Join
+        us on this sweetened journey of equality and flavor where everyone is
+        welcome to enjoy the sweet life together.
+      </p>
+    </div>
+
+    <div class="about__wave">
+      <video loop autoplay muted playsinline src="/video/cakevideo.mp4" class="about__wave-video" controls>
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+<%- include('../../partial/principal/footer') %>
+
+<script>
+  const video = document.querySelector(".about__wave-video");
+
+  // Función para cambiar el volumen del video
+  function cambiarVolumen(nuevoVolumen) {
+    if (video) {
+      video.volume = nuevoVolumen;
+    }
+  }
+
+  // Ejemplo: cambiar el volumen a la mitad (0.5)
+  cambiarVolumen(0.3);
+</script>
+<script>
+  window.addEventListener('load', function() {
+    var loader = document.getElementById('loader');
+    loader.style.display = 'none';
+  });
+</script>

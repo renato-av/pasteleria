@@ -1,0 +1,294 @@
+<%- include('../../partial/principal/header') %>
+<div class="card-wrapper">
+  <div class="card-css">
+    <!-- card left -->
+    <div class="product-imgs">
+        <div class="image-container">
+          <img
+            src="<%= product.image_url %>"
+            alt="<%= product.name %>"
+            loading="lazy"
+          />
+        </div>
+    </div>
+    <!-- card right -->
+    <div class="product-content">
+      <h2 class="product-title"><%= product.name %></h2>
+      <p><%= product.description %></p>
+
+      <% const validDetails = product.product_details.filter(detail =>
+      detail.type && detail.size); %> <% if (validDetails.length > 0) { %>
+      <div class="product-options">
+        <label for="product-options">Select Option:</label>
+        <div id="product-options" class="product-options-container">
+          <% validDetails.forEach((detail, index) => { %>
+          <button
+            class="product-option-button"
+            data-index="<%= index %>"
+            data-price="<%= detail.price %>"
+            data-quantity="<%= detail.quantity %>"
+          >
+            <%= detail.type %> <%= detail.size %>
+          </button>
+          <% }) %>
+        </div>
+      </div>
+      <% } %>
+
+      <!-- <div class="product-options">
+        <label for="product-detail-select">Select Option:</label>
+        <select id="product-detail-select">
+          <% product.product_details.forEach((detail, index) => { %>
+          <option value="<%= index %>" data-price="<%= detail.price %>">
+            Type: <%= detail.type %> - Size: <%= detail.size %> <% if
+            (detail.quantity !== 'N/A') { %> - <%= detail.quantity %> pcs <% }
+            %>
+          </option>
+          <% }) %>a
+        </select>
+      </div> -->
+
+      <!-- Precio del producto -->
+      <div class="product-price">
+        <% if (product.product_details[0].price ) { %>
+        <p class="new-price" id="product-price">
+          Price: $<%= product.product_details[0].price %>
+        </p>
+        <% } else { %>
+        <span></span>
+        <% } %>
+        <span id="quantity"> </span>
+      </div>
+
+      <!-- Contador de cantidad -->
+
+      <% if (validDetails.length > 0) { %>
+      <div class="quantity-container">
+        <button class="quantity-btn btn-1" id="decrease-quantity">-</button>
+        <input
+          type="number"
+          class="quantity-input"
+          id="product-quantity"
+          value="1"
+          min="1"
+          placeholder="1"
+          readonly
+        />
+        <button class="quantity-btn btn-2" id="increase-quantity">+</button>
+      </div>
+      <% } %>
+
+      <div class="button-container">
+        <div class="purchase-info">
+          <button
+            class="btn btn-success"
+            id="buy-on-whatsapp"
+            data-product-name-wstp="<%= product.name %>"
+            data-phone-number="19045346422"
+          >
+            Buy on Whatsapp <i class="fab fa-whatsapp"></i>
+          </button>
+        </div>
+        <div>
+          <a
+            href="https://ig.me/m/mayaspastries1"
+            class="button instagram"
+            target="_blank"
+          >
+            Send Message on Instagram
+            <i class="fab fa-instagram icon"></i>
+          </a>
+        </div>
+        <div>
+          <a
+            href="http://m.me/mayaspastries"
+            class="button facebook"
+            target="_blank"
+          >
+            Send Message on Messenger
+            <i class="fab fa-facebook-messenger icon"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- menu section starts -->
+<!-- menu section starts -->
+<section class="ftco-section" id="menu" style="margin-top: 150px">
+  <div class="container-fluid px-4">
+    <div>
+      <h4
+        style="
+          text-align: center;
+          font-size: 35px;
+          font-weight: bold;
+          font-family: 'Comic Neue', sans-serif;
+          color: #333;
+        "
+      >
+        Related Products
+      </h4>
+    </div>
+    <div class="container-card related-products">
+      <!-- <div class="card__container">
+        <% relatedProducts.forEach(function(product) { %>
+        <article class="card__article">
+          <img
+            src="<%= product.image_url %>"
+            alt="image"
+            class="card__img"
+            loading="lazy"
+          />
+          <div class="card__data">
+            <span class="card__description">Maya's Pastries</span>
+            <h2 class="card__title"><%= product.name %></h2>
+            <a href="/detail/<%= product.id %>" class="card__button"
+              >Order now</a
+            >
+          </div>
+        </article>
+        <% }); %>
+      </div> -->
+      <% relatedProducts.forEach(product => { %>
+        <div class="card" data-product-id="<%= product.id %>">
+          <div class="image-wrapper">
+            <img src="<%= product.image_url %>" loading="lazy" />
+          </div>
+          <div class="contenido-card">
+            <p><%= product.name %></p>
+
+            <div class="button-wrapper">
+              <a href="/detail/<%= product.id %>">See More</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('../../partial/principal/footer') %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const productOptionsContainer = document.getElementById("product-options");
+    const productPrice = document.getElementById("product-price");
+    const productQuantity = document.getElementById("product-quantity");
+    const decreaseQuantityBtn = document.getElementById("decrease-quantity");
+    const increaseQuantityBtn = document.getElementById("increase-quantity");
+    const whatsappButton = document.getElementById("buy-on-whatsapp");
+
+    let totalPrice = 0;
+
+    const updatePriceAndQuantity = () => {
+      const selectedButton = document.querySelector(
+        ".product-option-button.selected"
+      );
+      if (!selectedButton) return;
+
+      const index = selectedButton.getAttribute("data-index");
+      const price = parseFloat(selectedButton.getAttribute("data-price")) || 0;
+      const quantity = parseInt(productQuantity.value) || 1;
+      totalPrice = (price * quantity).toFixed(2);
+
+      if (productPrice) {
+        productPrice.textContent = `Price: $${totalPrice}`;
+      }
+    };
+
+    if (productOptionsContainer) {
+      // Event listener for option buttons
+      productOptionsContainer.addEventListener("click", (event) => {
+        if (event.target.classList.contains("product-option-button")) {
+          document
+            .querySelectorAll(".product-option-button")
+            .forEach((btn) => btn.classList.remove("selected"));
+          event.target.classList.add("selected");
+          updatePriceAndQuantity();
+        }
+      });
+
+      // Initialize the first button as selected if there are any buttons
+      const firstButton = document.querySelector(".product-option-button");
+      if (firstButton) {
+        firstButton.classList.add("selected");
+        updatePriceAndQuantity();
+      }
+    }
+
+    // Event listeners for quantity buttons
+    if (decreaseQuantityBtn && increaseQuantityBtn) {
+      decreaseQuantityBtn.addEventListener("click", () => {
+        if (productQuantity.value > 1) {
+          productQuantity.value--;
+          updatePriceAndQuantity();
+        }
+      });
+
+      increaseQuantityBtn.addEventListener("click", () => {
+        productQuantity.value++;
+        updatePriceAndQuantity();
+      });
+    }
+
+    // Initialize the price and quantity display
+    updatePriceAndQuantity();
+
+    // Event listener for WhatsApp button
+    if (whatsappButton) {
+      whatsappButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default action
+
+        const selectedButton = document.querySelector(
+          ".product-option-button.selected"
+        );
+        const productNameWstp = this.getAttribute("data-product-name-wstp");
+        const phoneNumber = this.getAttribute("data-phone-number");
+        let quantity = 0;
+        if (productQuantity) {
+          quantity = productQuantity.value;
+        }
+        let detailDescription = "";
+        if (selectedButton && quantity !== 0) {
+          detailDescription = `${selectedButton.textContent},  Quantity: ${quantity}, Price: $${totalPrice}`;
+        }
+        if (selectedButton && quantity === 0) {
+          detailDescription = `${selectedButton.textContent}`;
+        }
+        if (!selectedButton && quantity === 0) {
+          detailDescription = ``;
+        }
+        if (!selectedButton && quantity !== 0) {
+          detailDescription = `Quantity: ${quantity}, Price: $${totalPrice} `;
+        }
+
+        // Construye el mensaje de WhatsApp
+        const whatsappMessage = `¡Hello! I'm interested in: ${productNameWstp}.  ${detailDescription}`;
+
+        // URL de WhatsApp con el número de teléfono y el mensaje personalizado
+        const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+          whatsappMessage
+        )}`;
+
+        // Abre el enlace en una nueva ventana o pestaña
+        window.open(whatsappURL, "_blank");
+      });
+    }
+    
+    const container = document.querySelector('.image-container');
+    const image = container.querySelector('img');
+
+    container.addEventListener('mousemove', (e) => {
+      const { left, top, width, height } = container.getBoundingClientRect();
+      const x = ((e.clientX - left) / width) * 100;
+      const y = ((e.clientY - top) / height) * 100;
+
+      image.style.transformOrigin = `${x}% ${y}%`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+      image.style.transformOrigin = 'center center'; // Restablece al centro cuando el cursor sale
+    });
+  });
+</script>

@@ -1,0 +1,78 @@
+<%- include('../../partial/admin/header') %>
+<div class="container-admin">
+  <%- include('../../partial/admin/navbar') %>
+
+  <div class="container">
+    <h1>mantenimiento de los Tamaños</h1>
+
+    <button class="modal__trigger btn btn-primary">agregar Tamaño</button>
+
+    <div class="modal" id="modal">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+        <button class="modal__close">&times;</button>
+        <h2 class="modal__title">Formulario de Tamaños</h2>
+        <form class="modal__form" action="/admin/sizes/addSize" method="POST">
+          <div class="modal__form-group">
+            <label for="name" class="modal__label">Nombre del tamaño</label>
+            <input
+              type="text"
+              id="name"
+              class="modal__input"
+              name="name"
+              required
+            />
+          </div>
+
+          <button type="submit" class="modal__submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+    <div class="table-responsive table-container">
+      <table id="table" class="display" style="width: 100%">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(sizes.length > 0) {%> <% for (let i= 0; i < sizes.length;
+          i++){%>
+
+          <tr>
+            <td><%= sizes[i].id%></td>
+
+            <td><%= sizes[i].name%></td>
+
+            <td>
+              <a
+                href="/admin/sizes/edit/<%= sizes[i].id%>"
+                class="btn btn-primary"
+                >Editar</a
+              >
+              <form
+                action="/admin/sizes/delete/<%= sizes[i].id%>"
+                method="POST"
+                style="display: inline"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?');"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+
+          <% } %> <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partial/admin/footer') %>

@@ -1,0 +1,53 @@
+<%- include('partial/admin/header') %>
+<div class="container-admin">
+  <%- include('partial/admin/navbar') %>
+  <div class="container">
+    <header>
+      <h1>Bienvenido al admin</h1>
+      <form class="form" action="/admin/logout" method="POST">
+        <button class="btn btn-primary" type="submit">Cerrar Sesión</button>
+      </form>
+    </header>
+    <div class="cards">
+      <div class="card">
+        <a href="/admin/products">
+          <h2>Productos</h2>
+          <p>Gestiona los productos de tu tienda</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/admin/product_details">
+          <h2>Detalles</h2>
+          <p>Gestiona los diferentes detalles de los productos</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/admin/categories">
+          <h2>Categorías</h2>
+          <p>Administra las categorías de productos</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/admin/types">
+          <h2>Tipos</h2>
+          <p>Controla los diferentes tipos de productos</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/admin/sizes">
+          <h2>Tamaños</h2>
+          <p>Gestiona los diferentes tamaños de los productos</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/admin/users">
+          <h2>Usuarios</h2>
+          <p>Gestiona los usuarios y sus permisos</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partial/admin/footer') %>

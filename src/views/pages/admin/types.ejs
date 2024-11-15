@@ -1,0 +1,76 @@
+<%- include('../../partial/admin/header') %>
+<div class="container-admin">
+  <%- include('../../partial/admin/navbar') %>
+
+  <div class="container">
+    <h1>mantenimiento types</h1>
+    <button class="modal__trigger btn btn-primary">agregar Tipo</button>
+
+    <div class="modal" id="modal">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+        <button class="modal__close">&times;</button>
+        <h2 class="modal__title">Formulario de Tipo de Producto</h2>
+        <form class="modal__form" action="/admin/types/addType" method="POST">
+          <div class="modal__form-group">
+            <label for="name" class="modal__label">Nombre del Tipo</label>
+            <input
+              type="text"
+              id="name"
+              class="modal__input"
+              name="name"
+              required
+            />
+          </div>
+
+          <button type="submit" class="modal__submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+    <div class="table-responsive table-container">
+      <table id="table" class="display" style="width: 100%">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(types.length > 0) {%> <% for (let i= 0; i < types.length;
+          i++){%>
+
+          <tr>
+            <td><%= types[i].id%></td>
+
+            <td><%= types[i].type_name%></td>
+
+            <td>
+              <a
+                href="/admin/types/edit/<%=types[i].id%>"
+                class="btn btn-primary"
+                >Editar</a
+              >
+              <form
+                action="/admin/types/delete/<%= types[i].id%>"
+                method="POST"
+                style="display: inline"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  onclick="return confirm('¿Estás seguro de que quieres eliminar este tipo de producto?');"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+
+          <% } %> <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%- include('../../partial/admin/footer') %>
+</div>

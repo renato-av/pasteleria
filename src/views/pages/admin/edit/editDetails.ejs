@@ -1,0 +1,58 @@
+<%- include('../../../partial/admin/header') %>
+<div class="container-admin">
+  <%- include('../../../partial/admin/navbar') %>
+
+  <div class="container">
+    <h1 class="title-update">Editar Detalle del Producto</h1>
+    <form
+      action="/admin/product_details/update/<%= detail.id %>"
+      method="POST"
+      class="form"
+    >
+    <div class="form-group">
+        <label for="products">Producto</label>
+        <select class="form-input" id="products" name="products" required>
+          <% products.forEach(product => { %>
+            <option value="<%= product.id %>" <%= product.id === detail.base_product_id ? 'selected' : '' %>><%= product.name %></option>
+          <% }) %>
+        </select>
+      </div >
+      <div class="form-group">
+        <label class="form-label" for="types">Tipo</label>
+        <select class="form-input" id="types" name="types">
+          <option value="-1" <%= detail.product_type_id === null ? 'selected' : '' %>>Ninguno</option>
+          <% types.forEach(type => { %>
+            <option value="<%= type.id %>" <%= type.id === detail.product_type_id ? 'selected' : '' %>><%= type.type_name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sizes">Tamaño</label>
+        <select class="form-input" id="sizes" name="sizes">
+          <option value="-1" <%= detail.product_size_id === null ? 'selected' : '' %>>Ninguno</option>
+          <% sizes.forEach(size => { %>
+            <option value="<%= size.id %>" <%= size.id === detail.product_size_id ? 'selected' : '' %>><%= size.name %></option>
+          <% }) %>
+        </select>
+      </div>
+    
+      <div class="form-group">
+        <label class="form-label" for="price">Precio</label>
+        <input class="form-input" type="number" id="price" name="price" value="<%= detail.price %>">
+      </div>
+    
+      <div class="form-group">
+        <label class="form-label" for="quantity">Cantidad</label>
+        <input class="form-input" type="number" id="quantity" name="quantity" value="<%= detail.quantity %>">
+      </div>
+  
+     
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="/admin/product_details" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../../../partial/admin/footer') %>

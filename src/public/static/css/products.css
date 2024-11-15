@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+/* Pagination */
+
+#pagination {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 30px;
+   text-align: center;
+   margin: 10px 0;
+}
+
+#pagination p {
+   margin: 0;
+}
+
+
+#prevBtn,
+#nextBtn {
+   background-color: #f1f1f1;
+   color: #333;
+   cursor: pointer;
+   transition: background-color 0.3s;
+   font-size: 15px;
+   width: 40px;
+   height: 40px;
+   display: grid;
+   place-items: center;
+   border: none;
+   border-radius: 100%;
+}
+
+#prevBtn:hover,
+#nextBtn:hover {
+   background-color: #ddd;
+}
+
+#currentPage {
+   display: block;
+   margin-top: 10px;
+   font-size: 15px;
+   color: #666;
+}
+
+.pagination-button svg {
+   vertical-align: middle;
+   width: 20px;
+   height: 20px;
+   color: #000;
+}
+
+/*Search Product*/
+
+.input-container {
+   display: flex;
+   align-items: center;
+   width: 400px;
+   border-bottom: 1px solid #ccc;
+   font-size: 16px;
+   background-color: white;
+   -webkit-transition: width 0.4s ease-in-out;
+   transition: width 0.4s ease-in-out;
+}
+
+.input-container i {
+   padding: 0 10px;
+   color: #ccc;
+}
+
+.input-container input[type="text"] {
+   border: none;
+   width: 100%;
+   padding: 12px 0;
+   outline: none;
+}
+
+#search-form-button {
+   background-color: #c8a97e;
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   cursor: pointer;
+   border-radius: 4px;
+   margin-left: 10px;
+
+   &:hover {
+      background-color: #A58C69;
+   }
+}
+
+.main-title {
+   font-size: 80px;
+   color: #c8a97e;
+   font-weight: normal;
+   margin-bottom: 0;
+   line-height: 1;
+   font-family: "Poppins", cursive;
+}
+
+.container-card {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.container-card.related-products .card {
+   flex: 1 1 calc(25% - 30px);
+   margin: 10px;
+   box-sizing: border-box;
+   max-width: 25%;
+}
+
+.container-card .card {
+   /* flex: 1 1 calc(33.333% - 30px); */
+   box-sizing: border-box;
+}
+
+.container-card .card:nth-child(4n + 1) {
+   margin-left: 0;
+}
+
+.card {
+   overflow: hidden;
+   transition: all 400ms ease-out;
+   border: none;
+   border-radius: 0;
+   width: 100%;
+   position: relative;
+   padding: 0 10px;
+}
+
+
+.container-card .card:nth-child(3n) {
+   border: none;
+}
+
+
+
+/* .card:hover {
+   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+   transform: translateY(-3%);
+} */
+
+.card .image-wrapper {
+   height: 270px;
+   width: 100%;
+   border-radius: 10px;
+}
+
+.card img {
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+   transition: transform 0.3s ease-in-out;
+}
+
+.card .contenido-card {
+   text-align: center;
+}
+
+/* .card .contenido-card h3 {
+   margin-bottom: 15px;
+   font-size: 16px;
+   color: #c8a97e;
+   font-family: 'Raleway', sans-serif;
+}
+
+.card .contenido-card span {
+   color: #7a7a7a;
+   font-size: 16px;
+   margin-bottom: 5px;
+}
+
+.card .contenido-card p {
+   color: #c8a97e;
+   font-size: 24px;
+   margin-bottom: 5px;
+} */
+
+.card .contenido-card p {
+   color: #c8a97e;
+   font-size: 20px;
+   margin-top: 10px;
+}
+
+.card .contenido-card .card-message {
+   color: #c8a97e;
+   font-size: 10px;
+   position: absolute;
+   z-index: -1;
+   opacity: 0;
+   inset: 0;
+   display: grid;
+   place-items: center;
+   transition: all 0.3s ease-in-out;
+
+   & div {
+      background-color: #fff;
+      text-align: center;
+      padding: 5px 20px;
+      border-radius: 4px;
+
+      & p {
+         margin: 0;
+      }
+   }
+}
+
+.card:hover .contenido-card .button-wrapper {
+   opacity: 1;
+   z-index: 10;
+}
+
+.card:hover .image-wrapper img {
+   transform: scale(1.1);
+}
+
+.card .contenido-card .button-wrapper {
+   opacity: 0;
+   position: absolute;
+   z-index: -1;
+   inset: 0;
+   display: grid;
+   place-items: center;
+   background-color: rgba(255, 255, 255, 0.2);
+   transition: all 0.3s ease-in-out;
+
+   & div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+   }
+
+
+}
+
+.button-wrapper .favorite-button {
+   background-color: #c8a97e;
+   border: none;
+   padding: 10px;
+   border-radius: 100%;
+   cursor: pointer;
+   transition: all 400ms ease;
+
+   & svg {
+      width: 20px;
+      height: 20px;
+      color: #fff;
+   }
+
+   &:hover {
+      background-color: #A58C69;
+      scale: 1.1;
+   }
+}
+
+.card .contenido-card a {
+   display: inline-block;
+   padding: 10px 30px;
+   text-decoration: none;
+   color: #ffff;
+   background-color: #c8a97e;
+   border-radius: 4px;
+   transition: all 400ms ease;
+}
+
+.card .contenido-card a:hover {
+   background: #A58C69;
+   color: #fff;
+}
+
+.card:after {
+   content: " ";
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 4px;
+   height: calc(100% - 20px);
+   background: repeating-linear-gradient(#ffdad5 0, #ffdad5 4px,
+         /* Tamaño de cada punto */
+         transparent 4px, transparent 12px
+         /* Espacio entre puntos */
+      );
+   background-size: 4px 12px;
+}
+
+@media (width < 800px) {
+   .card:after {
+      content: none;
+   }
+}
+
+@media (width > 800px) {
+   .card:nth-child(2n):after {
+      content: none;
+   }
+}
+
+@media (width > 900px) {
+   .card:nth-child(2n):after {
+      content: " ";
+   }
+
+   .card:nth-child(3n):after {
+      content: none;
+   }
+}
+
+@media (width > 1500px) {
+   .card:nth-child(3n):after {
+      content: " ";
+   }
+   .card:nth-child(4n):after {
+      content: none;
+   }
+}
+
+@media (width > 1900px) {
+   .card:nth-child(3n):after {
+      content: " ";
+   }
+   .card:nth-child(4n):after {
+      content: " ";
+   }
+
+   .card:nth-child(5n):after {
+      content: none;
+   }
+}
+
+@media (max-width: 800px) {
+   .input-container {
+      width: 100%;
+
+   }
+}
+
+@media (max-width: 750px) {
+   .subheading {
+      font-size: 40px !important;
+      width: 100% !important;
+
+   }
+}
+
+
+/* Para pantallas entre 751px y 900px */
+@media (min-width: 751px) and (max-width: 1000px) {
+   .subheading {
+      width: 100% !important;
+      max-width: 3500px !important;
+      font-size: 20d0px !important;
+   }
+}

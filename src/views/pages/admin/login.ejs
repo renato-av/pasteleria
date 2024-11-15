@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <style>
+      .error-message {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login__container">
+      <div class="login__logo">
+        <img
+          src="https://png.pngtree.com/thumb_back/fw800/background/20220808/pngtree-different-sweets-on-the-wooden-table-vertical-east-pastry-napkin-photo-image_22591302.jpg"
+          alt="imagen del logo"
+          class="login__img"
+        />
+      </div>
+      <div class="login__form-container">
+        <h1 class="login__title">Bienvenido de vuelta</h1>
+        <form class="login__form" action="/admin/login/entry" method="POST">
+          <input
+            class="login__input"
+            type="text"
+            name="user_name"
+            id="user_name"
+            placeholder="user_name"
+          />
+          <input
+            class="login__input"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <span id="error-message" class="error-message">
+            <%= errorMessage %>
+          </span>
+          <input class="login__submit" type="submit" value="Ingresar" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

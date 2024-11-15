@@ -1,0 +1,82 @@
+<%- include('../../../partial/admin/header') %>
+<div class="container-admin">
+  <%- include('../../../partial/admin/navbar') %>
+
+  <div class="container">
+    <h1>Editar Usuario</h1>
+    <form
+      action="/admin/users/update/<%= user.id %>"
+      method="POST"
+      class="form"
+    >
+      <div class="form-group">
+        <label for="name" class="form-label">Nombre</label>
+        <input
+          type="text"
+          id="name"
+          class="form-input"
+          name="name"
+          value="<%= user.name %>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastname" class="form-label">Apellido</label>
+        <input
+          type="text"
+          id="lastname"
+          class="form-input"
+          name="lastname"
+          value="<%= user.lastname %>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Correo</label>
+        <input
+          type="text"
+          id="email"
+          class="form-input"
+          name="email"
+          value="<%= user.email %>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone" class="form-label">Teléfono</label>
+        <input
+          type="text"
+          id="phone"
+          class="form-input"
+          name="phone"
+          value="<%= user.phone %>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="user_name" class="form-label">Usuario</label>
+        <input
+          type="text"
+          id="user_name"
+          class="form-input"
+          name="user_name"
+          value="<%= user.user_name %>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          class="form-input"
+          name="password"
+          required
+        />
+      </div>
+      <button type="submit" class="modal__submit">Guardar</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../../../partial/admin/footer') %>

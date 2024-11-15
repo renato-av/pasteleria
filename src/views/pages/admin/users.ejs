@@ -1,0 +1,143 @@
+<%- include('../../partial/admin/header') %>
+
+<div class="container-admin">
+  <%- include('../../partial/admin/navbar') %>
+
+  <div class="container">
+    <h1>mantenimiento User</h1>
+    <button class="modal__trigger btn btn-primary">agregar Usuario</button>
+    <div class="modal" id="modal">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+        <button class="modal__close">&times;</button>
+        <h2 class="modal__title">Formulario de Usuario</h2>
+        <form class="modal__form" action="/admin/users/addUser" method="POST">
+          <div class="modal__form-group">
+            <label for="name" class="modal__label">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              class="modal__input"
+              name="name"
+              required
+            />
+          </div>
+          <div class="modal__form-group">
+            <label for="lastname" class="modal__label">segundo nombre</label>
+            <input
+              type="text"
+              id="lastname"
+              class="modal__input"
+              name="lastname"
+              required
+            />
+          </div>
+          <div class="modal__form-group">
+            <label for="email" class="modal__label">correo</label>
+            <input
+              type="text"
+              id="email"
+              class="modal__input"
+              name="email"
+              required
+            />
+          </div>
+          <div class="modal__form-group">
+            <label for="phone" class="modal__label">telefono</label>
+            <input
+              type="text"
+              id="phone"
+              class="modal__input"
+              name="phone"
+              required
+            />
+          </div>
+          <div class="modal__form-group">
+            <label for="user_name" class="modal__label">Usuario</label>
+            <input
+              type="text"
+              id="user_name"
+              class="modal__input"
+              name="user_name"
+              required
+            />
+          </div>
+          <div class="modal__form-group">
+            <label for="password" class="modal__label">Contraseña</label>
+            <input
+              type="text"
+              id="password"
+              class="modal__input"
+              name="password"
+              required
+            />
+          </div>
+          <div class="modal__form-group">
+            <label for="repeat_password" class="modal__label"
+              >Repita contraseña</label
+            >
+            <input
+              type="text"
+              id="repeat_password"
+              class="modal__input"
+              name="repeat_password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="modal__submit">Guardar</button>
+        </form>
+      </div>
+    </div>
+    <div class="table-responsive table-container">
+      <table id="table" class="display" style="width: 100%">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(users.length > 0) {%> <% for (let i= 0; i < users.length;
+          i++){%>
+
+          <tr>
+            <td><%= users[i].id%></td>
+
+            <td><%= users[i].name%></td>
+            <td><%= users[i].email%></td>
+            <td><%= users[i].user_name%></td>
+
+            <td>
+              <a
+                href="/admin/users/edit/<%= users[i].id%>"
+                class="btn btn-primary"
+                >Editar</a
+              >
+              <form
+                action="/admin/users/delete/<%= users[i].id%>"
+                method="POST"
+                style="display: inline"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?');"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+
+          <% } %> <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partial/admin/footer') %>

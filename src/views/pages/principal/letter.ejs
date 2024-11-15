@@ -1,0 +1,392 @@
+<%- include('../../partial/principal/header') %>
+
+  <body class="home-page">
+    <div id="loader">
+      <img src="/static/images/loadgif.gif" alt="Loading...">
+    </div>
+    <div class="main-wrapper" id="letter">
+      <div class="letter-heading">
+        <h1>Cakes</h1>
+
+        <p>
+          <a href="/">Inicio</a>
+          <span>/</span>
+          <span>Cakes</span>
+        </p>
+      </div>
+      <div class="container">
+        <!-- <div class="row justify-content-center" style="
+            margin-top: 150px !important;
+            margin-bottom: 30px;
+            ">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <span class="subheading">Sweeten your world with us</span>
+          </div>
+        </div> -->
+        <div class="product-container">
+          <div class="product-categories">
+            <h3>Product Categories</h3>
+            <ul>
+              <li><a href="/letter?searchWord=&category=">All</a></li>
+              <li><a href="/letter?searchWord=&category=2">Mini Cakes</a></li>
+              <li><a href="/letter?searchWord=&category=3">Family Cakes</a></li>
+              <li><a href="/letter?searchWord=&category=5">Sweet Peruvian Snacks</a></li>
+              <li><a href="/letter?searchWord=&category=6">Salty Peruvian Snacks</a></li>
+              <li><a href="/letter?searchWord=&category=7">Personalized Cakes</a></li>
+              <li><a href="/letter?searchWord=&category=1">Standard Cakes</a></li>
+            </ul>
+          </div>
+          <div class="product-content">
+            <div class="product-content-search">
+              <p>
+                <%= start %>–<%= end %> of <%= totalProducts %> products
+              </p>
+              <form class="search-form-product" action="/letter" method="GET">
+                <div class="input-container" id="search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" name="searchWord" id="search-input"
+                    value="<%= typeof searchWord !== 'undefined' ? searchWord : '' %>" placeholder="Search product" />
+                </div>
+
+                <button id="search-form-button" class="btn" type="submit">Search</button>
+              </form>
+            </div>
+
+            <div class="container-card">
+              <% if (selectedCategory !=='5' && selectedCategory !=='6' ) { %>
+                <% products.forEach(product=> { %>
+                  <div class="card" data-product-id="<%= product.id %>">
+                    <div class="image-wrapper">
+                      <img src="<%= product.image_url %>" loading="lazy" />
+                    </div>
+                    <div class="contenido-card">
+                      <p>
+                        <%= product.name %>
+                      </p>
+
+                      <div class="card-message" data-message-id="<%= product.id %>">
+                        <div>
+                          <p>Product added</p>
+                        </div>
+                      </div>
+
+                      <div class="button-wrapper">
+                        <div>
+                          <a href="/detail/<%= product.id %>">See More</a>
+                          <div class="favorite-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                          </div>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% }) %>
+                    <% } %>
+                      <% if (selectedCategory && selectedCategory.toString()==='5' ) { %>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>QUANTITY</th>
+                              <th>TYPE</th>
+                              <th>SIMPLE</th>
+                              <th>PREMIUM</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>25</td>
+                              <td>Alfajorcitos Clásicos</td>
+                              <td>$45.00</td>
+                              <td>$55.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Alfajorcitos Rellenos de Fudge de Chocolate</td>
+                              <td>$48.00</td>
+                              <td>$55.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Mini Brownies</td>
+                              <td>$45.00</td>
+                              <td>$50.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Chocotejas (Pecana, Coco o Pasas)</td>
+                              <td>$45.00</td>
+                              <td>$50.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Mini mouse de Lúcuma</td>
+                              <td>$60.00</td>
+                              <td>$60.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Arroz con leche</td>
+                              <td>$55.00</td>
+                              <td>$55.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Mazamorra Morada</td>
+                              <td>$55.00</td>
+                              <td>$55.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Combinado "El Clásico"</td>
+                              <td>$60.00</td>
+                              <td>$60.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Tartaletas de Fresa o Durazno</td>
+                              <td>$55.00</td>
+                              <td>$65.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Mini Tartaletas de Limón</td>
+                              <td>$55.00</td>
+                              <td>$65.00</td>
+                            </tr>
+                            <tr>
+                              <td>24</td>
+                              <td>Mini Cheesecake de Fresa, Maracuyá o Lúcuma</td>
+                              <td>$50.00</td>
+                              <td>$58.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Piononitos o Brazos Gitanos</td>
+                              <td>$45.00</td>
+                              <td>$55.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Suspiro a la Limeña Clásico</td>
+                              <td>$65.00</td>
+                              <td>$65.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Suspiros a la Limeñia de Lúcuma</td>
+                              <td>$68.00</td>
+                              <td>$68.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Vasos Clásicos 3 Leches</td>
+                              <td>$60.00</td>
+                              <td>$60.00</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>Vasos de 3 Leches con Fresa, Durazno o Lúcuma</td>
+                              <td>$65.00</td>
+                              <td>$65.00</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <% } %>
+                          <% if (selectedCategory && selectedCategory.toString()==='6' ) { %>
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th>QUANTITY</th>
+                                  <th>TYPE</th>
+                                  <th>SIMPLE</th>
+                                  <th>PREMIUM</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Empanaditas de Pollo o Carne</td>
+                                  <td>$50.00</td>
+                                  <td>$55.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Enrrolladitos de Hot Dog</td>
+                                  <td>$50.00</td>
+                                  <td>$58.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Hojarascas de Aji de Gallina</td>
+                                  <td>$50.00</td>
+                                  <td>$60.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Hojarascas de Atún y Mayonesa</td>
+                                  <td>$50.00</td>
+                                  <td>$60.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Causitas con Atún</td>
+                                  <td>$55.00</td>
+                                  <td>$60.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Causitas con Pollo</td>
+                                  <td>$55.00</td>
+                                  <td>$65.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Papitas Rellenas</td>
+                                  <td>$55.00</td>
+                                  <td>$65.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Papitas a la Huancaina </td>
+                                  <td>$60.00</td>
+                                  <td>$60.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Tequeños Rellenos de Jamon y Queso</td>
+                                  <td>$50.00</td>
+                                  <td>$60.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Croissant de Pollo y Mayonesa</td>
+                                  <td>$50.00</td>
+                                  <td>$50.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Croissant de Pollo, Apio y Mayonesa</td>
+                                  <td>$58.00</td>
+                                  <td>$58.00</td>
+                                </tr>
+                                <tr>
+                                  <td>25</td>
+                                  <td>Croissant de Pollo, Durazno y Pecanas</td>
+                                  <td>$60.00</td>
+                                  <td>$60.00</td>
+                                </tr>
+                                <tr>
+                                  <td>24</td>
+                                  <td>Triples de Pollo, Jamon y Queso </td>
+                                  <td>$50.00</td>
+                                  <td>$58.00</td>
+                                </tr>
+                                <tr>
+                                  <td>24</td>
+                                  <td>Triples de Huevo, Palta y Tomate</td>
+                                  <td>$50.00</td>
+                                  <td>$58.00</td>
+                                </tr>
+                                <tr>
+                                  <td>24</td>
+                                  <td>Triples de Pollo, Jamon y Durazno</td>
+                                  <td>$50.00</td>
+                                  <td>$58.00</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <% } %>
+            </div>
+            <div id="pagination">
+              <% if (currentPage> 1) { %>
+                <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>&category=<%= selectedCategory %>" id="prevBtn"
+                  class="pagination-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                  </svg>
+                </a>
+                <% } %>
+                  <p>
+                    Page <%= currentPage %> of <%= totalPages %>
+                  </p>
+
+                  <% if (currentPage < totalPages) { %>
+                    <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>&category=<%= selectedCategory %>"
+                      id="nextBtn" class="pagination-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </a>
+                    <% } %>
+            </div>
+
+          </div>
+        </div>
+  </body>
+
+  <%- include('../../partial/principal/footer') %>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      table {
+        width: 90%;
+        border-collapse: collapse;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #c8a97e;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #FFD9E0;
+      }
+    </style>
+
+
+    <script>
+      window.addEventListener('load', function () {
+        var loader = document.getElementById('loader');
+        loader.style.display = 'none';
+      });
+
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        const favButton = card.querySelector('.favorite-button');
+        const message = card.querySelector('.card-message');
+
+        favButton.addEventListener('click', function () {
+          message.style.zIndex = '50';
+          message.style.opacity = '1';
+          setTimeout(() => {
+            message.style.zIndex = '-1';
+            message.style.opacity = '0';
+          }, 2000);
+        });
+      })
+
+    </script>

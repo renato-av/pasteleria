@@ -1,0 +1,27 @@
+<%- include('../../../partial/admin/header') %>
+<div class="container-admin">
+  <%- include('../../../partial/admin/navbar') %>
+
+  <div class="container">
+    <h1 class="title-update">Editar tipo de Producto</h1>
+    <form action="/admin/types/update/<%=type.id %>" method="POST" class="form">
+      <div class="form-group">
+        <label for="name" class="form-label">Nombre del tipo</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value="<%=type.type_name %>"
+          class="form-input"
+          required
+        />
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="/admin/types" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../../../partial/admin/footer') %>

@@ -1,0 +1,113 @@
+<%- include('../../partial/admin/header') %>
+<div class="container-admin">
+  <%- include('../../partial/admin/navbar') %>
+  <div class="container">
+    <h1>mantenimiento de los Detalles del productos</h1>
+    <button class="modal__trigger btn btn-primary">
+      Agregar Detalle Producto
+    </button>
+
+    <div class="modal" id="modal">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+        <button class="modal__close">&times;</button>
+        <h2 class="modal__title">Formulario de Detalle de Productos</h2>
+        <form
+          class="modal__form"
+          action="/admin/product_details/addDetail"
+          method="POST"
+        >
+          <div class="modal__form-group">
+            <label for="products" class="modal__label">Producto:</label>
+            <select id="products" class="modal__input" name="products" required>
+              <% products.forEach(product => { %>
+              <option value="<%= product.id %>"><%= product.name %></option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="modal__form-group">
+            <label for="sizes" class="modal__label">Tamaño:</label>
+            <select id="sizes" class="modal__input" name="sizes">
+              <option value="-1">Ninguno</option>
+              <% sizes.forEach(size => { %>
+              <option value="<%= size.id %>"><%= size.name %></option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="modal__form-group">
+            <label for="types" class="modal__label">Tipo:</label>
+            <select id="types" class="modal__input" name="types">
+              <option value="-1">Ninguno</option>
+              <% types.forEach(type => { %>
+              <option value="<%= type.id %>"><%= type.type_name %></option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="modal__form-group">
+            <label for="price" class="modal__label">Precio:</label>
+            <input type="number" id="price" class="modal__input" name="price" />
+          </div>
+          <div class="modal__form-group">
+            <label for="quantity" class="modal__label">Cantidad:</label>
+            <input
+              type="number"
+              id="quantity"
+              class="modal__input"
+              name="quantity"
+            />
+          </div>
+          <button type="submit" class="modal__submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="table-responsive table-container">
+      <table id="table" class="display" style="width: 100%">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>product</th>
+            <th>size</th>
+            <th>type</th>
+            <th>price</th>
+            <th>quantity</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(details.length > 0) { %> <% details.forEach(detail => { %>
+          <tr>
+            <td><%= detail.id %></td>
+            <td><%= detail.product %></td>
+            <td><%= detail.size || 'N/A' %></td>
+            <td><%= detail.type || 'N/A' %></td>
+            <td><%= detail.price !== null ? detail.price : 'N/A' %></td>
+            <td><%= detail.quantity !== null ? detail.quantity : 'N/A' %></td>
+            <td>
+              <a
+                href="/admin/product_details/edit/<%= detail.id %>"
+                class="btn btn-primary"
+                >Editar</a
+              >
+              <form
+                action="/admin/product_details/delete/<%= detail.id %>"
+                method="POST"
+                style="display: inline"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  onclick="return confirm('¿Estás seguro de que quieres eliminar este detalle del producto?');"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }); %> <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- include('../../partial/admin/footer') %>

@@ -1,0 +1,62 @@
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#table").DataTable({
+      language: {
+        url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
+      },
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-admin__link');
+    function setActiveLink() {
+      const currentPath = window.location.pathname;
+      navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        if (currentPath === linkPath) {
+          link.classList.add('active');
+          link.parentElement.classList.add('is-active');
+        } else {
+          link.classList.remove('active');
+          link.parentElement.classList.remove('is-active');
+        }
+      });
+    }
+
+    setActiveLink();
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal");
+    const modalTrigger = document.querySelector(".modal__trigger");
+    const modalClose = document.querySelector(".modal__close");
+    const modalOverlay = document.querySelector(".modal__overlay");
+
+    const openModal = () => {
+      modal.classList.add("modal--active");
+    };
+
+    const closeModal = () => {
+      modal.classList.remove("modal--active");
+    };
+
+    modalTrigger.addEventListener("click", openModal);
+    modalClose.addEventListener("click", closeModal);
+    modalOverlay.addEventListener("click", closeModal);
+
+  
+   
+  });
+</script>
+
+
+
+<script src="/js/admin.js"></script>
+</body>
+</html>
